@@ -1,0 +1,11 @@
+.addContactButton {
+    border-radius: 5px;
+    border: none;
+    color: white;
+    background-color: green;
+    padding: 5px 15px 5px 15px;
+}
+
+.contactCard {
+    border: 1px solid gray;
+}
