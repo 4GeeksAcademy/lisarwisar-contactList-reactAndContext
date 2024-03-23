@@ -8,4 +8,19 @@
 
 .contactCard {
     border: 1px solid gray;
+    padding: 20px;
+}
+
+.contactImage {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+
+.contactCardInfoIcons {
+    margin-right: 10px;
+}
+.contactModifyIcons {
+    margin-left: 10px;
+    margin-right: 10px;
 }
