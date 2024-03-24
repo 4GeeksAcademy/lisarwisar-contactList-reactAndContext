@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { Context } from "../store/appContext";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
@@ -15,30 +15,15 @@ import ryanGosling from "../../img/ryan-gosling.jpg";
 
 export const Contacts = () => {
 
-    const [contacts, setContacts] = useState();
-    
-    async function GetContacts () {
-        await fetch('https://playground.4geeks.com/apis/fake/contact/agenda/juana', {method: "GET"})
-        .then (response => {
-            return response.json();
-        })
-        .then(data => {
-            setContacts(data);
-            console.log("data: ",data[0].address)
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }
+    const { store, actions } = useContext(Context);
 
     useEffect(() => {
-        GetContacts()
+        actions.loadContacts()
       }, []);
 
     function ContactCards () {
-        let contactInfo = contacts;
         return(
-            contactInfo.map(contact => {
+            store.contacts.map(contact => (
                 <div className="col-12 contactCard">
                     <div className="row">
                         <div className="col-3 d-flex justify-content-center py-3">
@@ -75,7 +60,7 @@ export const Contacts = () => {
                         </div>
                     </div>
                 </div>
-            })
+            ))
         )
     }
 
@@ -85,6 +70,7 @@ export const Contacts = () => {
                 <div className="col-12 d-flex justify-content-end py-3">
                     <button className="addContactButton">Add new contact</button>
                 </div>
+                <ContactCards/>
             </div>
         </div>
     )

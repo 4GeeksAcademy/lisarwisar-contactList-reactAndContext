@@ -12,17 +12,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contacts: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			loadContacts: async () => {
+
+				const initialURL = 'https://playground.4geeks.com/apis/fake/contact/agenda/flavia_agenda';
+
+				await fetch(initialURL, {method: "GET"})
+				.then (response => {
+					return response.json();
+				})
+				.then(data => {
+					setStore({contacts: data})
+				})
+				.catch(error => {
+					console.log(error);
+				})
 			},
 			changeColor: (index, color) => {
 				//get the store
