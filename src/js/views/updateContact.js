@@ -2,10 +2,10 @@ import React, {useContext} from "react";
 import { useState } from "react";
 import { Context } from "../store/appContext";
 
-import "../../styles/addContact.css"
+import "../../styles/addContact.css" //same styles applied
 import { useNavigate } from "react-router";
 
-export const AddContacts = () => {
+export const UpdateContact = () => {
 
     const { store, actions } = useContext(Context);
     const [newContactInfo, setNewContactInfo] = useState({"agenda_slug": "lisarwisar"})
@@ -22,7 +22,7 @@ export const AddContacts = () => {
     return(
         <div className="row p-5">
             <div className="col-12 d-flex justify-content-center">
-                <h1>Add a new contact</h1>
+                <h1>Update contact</h1>
             </div>
             <div className="col-12">
                 <label for="full_name">Full name</label><br></br>
@@ -42,7 +42,7 @@ export const AddContacts = () => {
             </div>
             <div className="col-12">
                 <button className="saveButton" onClick={() => {
-                    actions.createContact(newContactInfo);
+                    actions.updateContact(store.updateContactID, newContactInfo);
                     navigate("/");
                 }}>Save</button>
             </div>

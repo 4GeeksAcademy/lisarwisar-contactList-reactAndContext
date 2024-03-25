@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			contacts: []
+			contacts: [],
+			updateContactID: ""
 		},
 		actions: {
 			loadContacts: async () => {
@@ -37,6 +38,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => {
 					console.log(error);
 				})
+
+				loadContacts();
+			},
+
+			deleteContact: async (contactID) => {
+				const deleteURL = `https://playground.4geeks.com/apis/fake/contact/${contactID}`;
+
+				await fetch(deleteURL, {method: "DELETE"})
+				.then (response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data)
+				})
+				.catch(error => {
+					console.log(error);
+				})
+
+				loadContacts();
+			},
+
+			setUpdateId: (newID) => {
+				setStore({updateContactID: newID})
+			},
+
+			updateContact: async (contactID, updatedContactInfo) => {
+
+				const updateURL = `https://playground.4geeks.com/apis/fake/contact/${contactID}`;
+
+				await fetch(updateURL, {
+					method: "PUT", 
+					body: JSON.stringify(updatedContactInfo), 
+					headers: {'Content-Type': 'application/json'}
+				})
+				.then (response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data)
+				})
+				.catch(error => {
+					console.log(error);
+				})
+
+				loadContacts();
 			}
 		}
 	};

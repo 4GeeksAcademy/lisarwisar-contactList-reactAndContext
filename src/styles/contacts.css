@@ -24,3 +24,8 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.invisibleButton{
+    border: none;
+    background: none;
+}
