@@ -3,9 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Contacts } from "./views/contacts";
-import { Home } from "./views/home";
-import { Demo } from "./views/demo";
-import { Single } from "./views/single";
+import { AddContacts } from "./views/addContact";
 import injectContext from "./store/appContext";
 
 //create your first component
@@ -19,10 +17,8 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Routes>
-						<Route path="/contacts" element={<Contacts />} />
-						<Route path="/" element={<Home />} />
-						<Route path="/demo" element={<Demo />} />
-						<Route path="/single/:theid" element={<Single />} />
+						<Route path="/" element={<Contacts />} />
+						<Route path="/add-new-contact" element={<AddContacts/>} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 				</ScrollToTop>

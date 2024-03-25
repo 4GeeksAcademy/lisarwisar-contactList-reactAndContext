@@ -1,28 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			contacts: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
 			loadContacts: async () => {
 
-				const initialURL = 'https://playground.4geeks.com/apis/fake/contact/agenda/flavia_agenda';
+				const initialURL = 'https://playground.4geeks.com/apis/fake/contact/agenda/lisarwisar';
 
 				await fetch(initialURL, {method: "GET"})
 				.then (response => {
@@ -35,19 +19,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error);
 				})
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+			createContact: async (newContactInfo) => {
 
-				//reset the global store
-				setStore({ demo: demo });
+				const initialURL = 'https://playground.4geeks.com/apis/fake/contact/';
+
+				await fetch(initialURL, {method: "POST", 
+					body: JSON.stringify(newContactInfo), 
+					headers: {'Content-Type': 'application/json'}
+				})
+				.then (response => {
+					return response.json();
+				})
+				.then(data => {
+					console.log(data)
+				})
+				.catch(error => {
+					console.log(error);
+				})
 			}
 		}
 	};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router";
 
 import { Context } from "../store/appContext";
 
@@ -16,6 +17,7 @@ import ryanGosling from "../../img/ryan-gosling.jpg";
 export const Contacts = () => {
 
     const { store, actions } = useContext(Context);
+    const navigate = useNavigate()
 
     useEffect(() => {
         actions.loadContacts()
@@ -68,7 +70,7 @@ export const Contacts = () => {
         <div className="container-fluid">
             <div className="row mx-5">
                 <div className="col-12 d-flex justify-content-end py-3">
-                    <button className="addContactButton">Add new contact</button>
+                    <button className="addContactButton" onClick={() => {navigate("/add-new-contact")}}>Add new contact</button>
                 </div>
                 <ContactCards/>
             </div>
