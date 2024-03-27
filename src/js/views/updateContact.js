@@ -44,6 +44,7 @@ export const UpdateContact = () => {
                 <button className="saveButton" onClick={() => {
                     actions.updateContact(store.updateContactID, newContactInfo);
                     navigate("/");
+                    window.location.reload();
                 }}>Save</button>
             </div>
             <a href="/">or get back to contacts</a>

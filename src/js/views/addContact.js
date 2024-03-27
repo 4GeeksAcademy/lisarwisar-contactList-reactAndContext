@@ -44,6 +44,7 @@ export const AddContacts = () => {
                 <button className="saveButton" onClick={() => {
                     actions.createContact(newContactInfo);
                     navigate("/");
+                    window.location.reload();
                 }}>Save</button>
             </div>
             <a href="/">or get back to contacts</a>

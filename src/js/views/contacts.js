@@ -54,15 +54,18 @@ export const Contacts = () => {
                         </div>
                         <div className="col-2 d-flex justify-content-center">
                             <div className="contactModifyIcons">
-                                <button className="invisibleButton" onClick={() => {
-                                    actions.setUpdateId(contact?.id);
+                                <button className="invisibleButton" onClick={async () => {
+                                    await actions.setUpdateId(contact?.id);
                                     navigate("/update-contact");
                                 }}>
                                     <FontAwesomeIcon icon={faPencil} />
                                 </button>
                             </div>
                             <div className="contactModifyIcons">
-                                <button className="invisibleButton" onClick={() => {actions.deleteContact(contact?.id)}}>
+                                <button className="invisibleButton" onClick={() => {
+                                    actions.deleteContact(contact?.id);
+                                    window.location.reload();
+                                }}>
                                     <FontAwesomeIcon icon={faTrashCan} />
                                 </button>
                             </div>
